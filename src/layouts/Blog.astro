@@ -1,0 +1,37 @@
+---
+import Navbar from "../components/Navbar.astro"
+import { type CollectionEntry } from 'astro:content'
+
+type Props = CollectionEntry<'blog'>['data']
+const { title, author } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{title}</title>
+</head>
+<body>
+    <Navbar />
+
+    <div class="flow-root max-w-md mx-auto bg-white shadow sm:rounded-lg my-8 prose">
+        <dl class="-my-3 divide-y divide-gray-100 text-sm">
+            <div class="grid grid-cols-1 gap-1 py-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4">
+                <dt class="font-medium text-gray-900 pl-4">Titulo</dt>
+                <dd class="text-gray-700 sm:col-span-2">{title}</dd>
+            </div>
+            <div class="grid grid-cols-1 gap-1 py-3 even:bg-gray-50 sm:grid-cols-3 sm:gap-4">
+                <dt class="font-medium text-gray-900 pl-4">Autor</dt>
+                <dd class="text-gray-700 sm:col-span-2">{author}</dd>
+            </div>
+        </dl>
+    </div>
+
+    <article class="container mx-auto prose">
+        <h1>{title}</h1>
+        <slot />
+    </article>
+</body>
+</html>
